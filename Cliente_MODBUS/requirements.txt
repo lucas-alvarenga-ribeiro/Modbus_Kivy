@@ -1,2 +1,4 @@
 pyModbusTCP==0.1.8
 pymodbus
+kivymd
+kivy

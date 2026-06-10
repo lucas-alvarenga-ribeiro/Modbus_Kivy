@@ -89,28 +89,20 @@ class ClienteMODBUS():
     def lerBitsHolding(self, addr):
 
         valor = self.lerDado(1,addr)
-
         binario = format(valor,'016b')
-
         bits = [int(bit) for bit in binario]
-
         return bits
+
     
 
     def escreveBits(self, addr, bit, posicao):
 
         valor = self.lerDado(1, addr)
-
         binario = format(valor, '016b')
-
         bits = [int(b) for b in binario]
-
         bits[posicao] = bit
-
         novo_binario = ''.join(str(b) for b in bits)
-
         novo_valor = int(novo_binario, 2)
-
         return self.escreveDado(1, addr, novo_valor)
     
     def close(self):

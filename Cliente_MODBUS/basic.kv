@@ -1,84 +1,87 @@
-#:kivy 1.11.1
-
-
-
 <MyWidget>:
     orientation: 'vertical'
-    BoxLayout:
-        Label: 
-            id: lb
+
+    MDBoxLayout:
+        MDLabel:
             text: 'IP:'
-            halign: 'center'
-            valign: 'middle'
-            text_size: self.size
-            size_hint: (1, 0.2)
-        TextInput:
+
+        MDTextField:
             id: ip
-            halign: 'center'
-            size_hint: (1, 0.8)
-    BoxLayout:
-        Label: 
-            id: lb2
+
+    MDBoxLayout:
+        MDLabel:
             text: 'Porta:'
-            size_hint: (1, 0.2)
-        TextInput:
+
+        MDTextField:
             id: porta
-            size_hint: (1, 0.8)
-    Button:
+
+    MDRaisedButton:
         text: 'Conectar'
-        on_press: root.connectar()
-    BoxLayout:
-        Label:
-            id: lb3
+        on_release: root.connectar()
+
+    MDBoxLayout:
+        MDLabel:
             text: 'Reg:'
-            size_hint: (1, 0.2)
-        TextInput:
+
+        MDTextField:
             id: reg
-            size_hint: (1, 0.8)
-    BoxLayout:
-        Label:
-            id: lb4
+
+    MDBoxLayout:
+        MDLabel:
             text: 'Valor da Leitura:'
-            size_hint: (1, 0.2)
-        Label:
+
+        MDLabel:
             id: ler
-            size_hint: (1, 0.8)
-    BoxLayout:
-        Label:
-            id: lb5
+            text: ''
+
+    MDBoxLayout:
+        MDLabel:
             text: 'Valor da Escrita:'
-            size_hint: (1, 0.2)
-        TextInput:
+
+        MDTextField:
             id: escrever
-            size_hint: (1, 0.8)
-    BoxLayout:
-        Button:
+
+    MDBoxLayout:
+
+        MDRaisedButton:
             text: 'Holding Register'
-            on_press: root.tipo = '1'
-        Button:
+            on_release: root.tipo = '1'
+
+        MDRaisedButton:
             text: 'Coil'
-            on_press: root.tipo = '2'
-        Button:
-            text: 'Input Register'
-            on_press: root.tipo = '3'
-        Button:
-            text: 'Discrete Input'
-            on_press: root.tipo = '4'
-        Button:
+            on_release: root.tipo = '2'
+
+        MDRaisedButton:
             text: 'Float'
-            on_press: root.tipo = '5'
-        Button:
-            text: 'Bit'
-            on_press: root.tipo = '6'
-    BoxLayout:
-        Button:
+            on_release: root.tipo = '3'
+
+
+        MDRaisedButton:
+            text: 'Bit (Individual)'
+            on_release: root.tipo = '5'
+
+    MDBoxLayout:
+
+        MDLabel:
+            text: 'Posição do bit'
+
+        MDTextField:
+            id: posicao
+
+    MDBoxLayout:
+
+        MDRaisedButton:
             text: 'Ler'
-            on_press: root.ler()
-        Button:
+            on_release: root.ler()
+
+        MDRaisedButton:
             text: 'Escrever'
-            on_press: root.escrever()
-    BoxLayout:
-        Label:
+            on_release: root.escrever()
+
+    MDBoxLayout:
+
+        MDLabel:
             text: 'Leitura Contínua'
-        CheckBox:
+
+        MDCheckbox:
             id: lcon

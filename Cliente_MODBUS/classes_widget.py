@@ -1,16 +1,16 @@
-import kivy
-from kivy.app import App
-from kivy.uix.boxlayout import BoxLayout
-from kivy.config import Config
+import kivymd
+from kivymd.app import MDApp
+from kivymd.uix.boxlayout import MDBoxLayout
 from kivy.clock import Clock
 
 from clientemodbus import ClienteMODBUS
 
 
-class MyWidget(BoxLayout):
+class MyWidget(MDBoxLayout):
     def __init__(self, **kwargs):
         super(MyWidget, self).__init__(**kwargs)
         self.tipo = None
+        self.cliente = None
 
     def changelb(self):
         """
@@ -38,39 +38,41 @@ class MyWidget(BoxLayout):
             tipo = int(self.tipo)
             valor_escrita = self.cliente.escreveDado(tipo, reg, valor_escrita)
             #self.ids.ler.text = "Escrita realizada." if valor_escrita else "Falha na escrita."
-        elif self.tipo == '5':
+        elif self.tipo == '3':
             reg = int(self.ids.reg.text)
             valor_escrita = float(self.ids.escrever.text)
             self.cliente.escreveFloat(reg, valor_escrita)
             #self.ids.ler.text = "Escrita realizada."
-        elif self.tipo == '6':
+        elif self.tipo == '5':
             reg = int(self.ids.reg.text)
+            posicao = int(self.ids.posicao.text)
             valor_escrita = int(self.ids.escrever.text)
-            self.cliente.escreveBitsHolding(reg, valor_escrita)
+            self.cliente.escreveBits(reg, valor_escrita, posicao)
             #self.ids.ler.text = "Escrita realizada."
 
     def executa_leitura(self, dt=None):
-        if(self.tipo == '1' or self.tipo == '2' or self.tipo == '3' or self.tipo == '4'):
+        if(self.tipo == '1' or self.tipo == '2'):
             reg = int(self.ids.reg.text)
             tipo = int(self.tipo)
             valor_leitura = self.cliente.lerDado(tipo, reg)
             self.ids.ler.text = str(valor_leitura)
 
-        elif self.tipo == '5':
+        elif self.tipo == '3':
             reg = int(self.ids.reg.text)
             valor_leitura = self.cliente.lerFloat(reg)
             self.ids.ler.text = str(valor_leitura)
         
-        elif self.tipo == '6':
+        elif self.tipo == '5':
             reg = int(self.ids.reg.text)
             valor_leitura = self.cliente.lerBitsHolding(reg)
             self.ids.ler.text = str(valor_leitura)
+        
         
 
 
 
 
-class BasicApp(App):
+class BasicApp(MDApp):
     def build(self):
         """
         Método para construção do aplicativo com base no widget criado

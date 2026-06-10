@@ -1,8 +1,6 @@
 from clientemodbus import ClienteMODBUS
-from interfacemodbus import ClienteInterface
 from classes_widget import BasicApp
 from kivy.config import Config
-
 
 
 #c = ClienteMODBUS('localhost',502)
