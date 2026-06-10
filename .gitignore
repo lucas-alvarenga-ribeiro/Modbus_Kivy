@@ -1,0 +1,12 @@
+# Ignorar as pastas de cache do Python em qualquer lugar do projeto
+__pycache__/
+*.pyc
+
+# Ignorar ambientes virtuais (caso você crie um para o cliente e outro para o servidor)
+venv/
+env/
+
+# Se quiser ignorar aqueles arquivos específicos de exemplo que estão no cliente:
+Cliente/exemplo_bits.py
+Cliente/exemplo_float.py
+Cliente/interfacemodbus.py
